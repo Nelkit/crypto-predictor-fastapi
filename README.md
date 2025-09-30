@@ -82,17 +82,17 @@ docker run -d -p 80:80 cryptocurrency-api-app
 
 1.  Login to Docker Hub:
 ```bash
- docker login
+docker login
 ```
 
 2. Build the Docker image (specify platform if needed, e.g. linux/amd64):
 ```bash
-  docker build --platform linux/amd64 -t nelkit792/cryptocurrency-api-app . 
+docker build --platform linux/amd64 -t nelkit792/cryptocurrency-api-app . 
 ```
 
 3. Push the image to Docker Hub:
 ```bash
- docker push nelkit792/cryptocurrency-api-app
+docker push nelkit792/cryptocurrency-api-app
 ```
 
 5. Deploy on Render.com using an existing Docker image:
