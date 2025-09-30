@@ -6,7 +6,7 @@ app = FastAPI()
 def read_root():
     return {
         "project": "Cryptocurrency Price Prediction API",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "description": "API for predicting next-day HIGH prices of cryptocurrencies using pre-trained models."
     }
 
