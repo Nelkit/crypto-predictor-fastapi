@@ -1,0 +1,24 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "36120-25sp-group6-25609227-at3-fastapi"
+version = "0.1.0"
+description = "FastAPI service for deploying cryptocurrency price prediction models. Includes endpoints for health check, project info, and next-day HIGH price prediction for a selected token."
+authors = [
+  "Nelkit Chavez"
+]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "==3.11.4"
+fastapi = "^0.116.1"
+uvicorn = "^0.35.0"
+pandas = "2.2.2"
+numpy = "^2.3.2"
+joblib = "^1.5.2"
+
+
