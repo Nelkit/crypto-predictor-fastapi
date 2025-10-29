@@ -10,6 +10,8 @@ COPY ./app /code/app
 
 COPY ./models /code/models
 
+COPY ./src /code/src
+
 CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 EXPOSE 80

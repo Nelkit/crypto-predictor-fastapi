@@ -67,13 +67,13 @@ Detailed documentation is available automatically at http://127.0.0.1:8000/docs
 1. Build the Docker image:
 
 ```bash 
-docker build -t cryptocurrency-api-app .
+docker build -t crypto-forecast-api .
 ```
 
 2. Run the Docker container:
 
 ```bash
-docker run -d -p 80:80 cryptocurrency-api-app
+docker run -d -p 80:80 crypto-forecast-api
 ```
 
 3. Access the application at http://localhost
@@ -87,17 +87,17 @@ docker login
 
 2. Build the Docker image (specify platform if needed, e.g. linux/amd64):
 ```bash
-docker build --platform linux/amd64 -t nelkit792/cryptocurrency-api-app . 
+docker build --platform linux/amd64 -t nelkit792/crypto-forecast-api . 
 ```
 
 3. Push the image to Docker Hub:
 ```bash
-docker push nelkit792/cryptocurrency-api-app
+docker push nelkit792/crypto-forecast-api
 ```
 
 5. Deploy on Render.com using an existing Docker image:
    - Select "Existing Image" as the deployment method.
-   - Provide the image URL: `docker.io/nelkit792/cryptocurrency-api-app`
+   - Provide the image URL: `docker.io/nelkit792/crypto-forecast-api`
 
 > Note: The project also includes a GitHub Actions workflow for automated Docker image building and pushing to Docker Hub on every pull request to the main branch.
 
