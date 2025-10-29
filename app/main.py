@@ -2,10 +2,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from src.inference.predict import predict_next_day_high
 from src.services.api import CoinGeckoApi
+import pandas as pd
+
+API_VERSION = "1.0.2"
 app = FastAPI(
     title="Ethereum Price Prediction API",
     description="Predicts next-day HIGH price for Ethereum using an LSTM model.",
-    version="1.0.1",
+    version=API_VERSION,
 )
 
 @app.get("/", tags=["Overview"])
@@ -46,6 +49,7 @@ def read_root():
             "Streamlit App": "https://github.com/nelkit/36120-25SP-group6-AT3-streamlit",
             "FastAPI Model": "https://github.com/Nelkit/36120-25SP-group6-25609227-AT3-fastapi"
         },
+        "api_version": API_VERSION
     }
     return JSONResponse(content=overview)
 
@@ -54,7 +58,7 @@ def health_check():
     """
     Return API health status.
     """
-    return JSONResponse(content={"status": "OK", "message": "Welcome to the Ethereum Prediction API 🚀"},
+    return JSONResponse(content={"status": "OK", "message": f"Welcome to the Ethereum Prediction API v{API_VERSION} 🚀"},
                         status_code=200)
 
 @app.get("/predict/{token}", tags=["Prediction"])
@@ -76,7 +80,8 @@ def predict_price(token: str):
     result = {
         "token": token,
         "latest_date": str(ohlc_data["timestamp"].max().date()),
-        "next_day_high": f"{prediction:.2f}",
+        "next_day_high_predicted": f"{prediction:.2f}",
+        "next_day_high_date": str((ohlc_data["timestamp"].max() + pd.Timedelta(days=1)).date()),
         "model": "LSTM (tuned)",
         "description": "Next-day HIGH price prediction for Ethereum in USD."
     }
