@@ -29,10 +29,9 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/cryptocurrency-api-app:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/cryptocurrency-api-app:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/crypto-forecast-api:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/crypto-forecast-api:latest
 
       - name: Trigger Render deploy
         run: |
-          curl -X POST "https://api.render.com/deploy/srv-d3drvpmr433s73eisvkg?key=${{ secrets.RENDER_DEPLOY_KEY }}"
-
+          curl -X POST "https://api.render.com/deploy/srv-d40vh1ili9vc73c0hvq0?key=${{ secrets.RENDER_DEPLOY_KEY }}"
