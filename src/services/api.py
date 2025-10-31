@@ -3,7 +3,7 @@ import requests_cache
 import pandas as pd
 import logging
 from datetime import timedelta
-from src.services.constants import BASE_API_URL
+from src.services.constants import BASE_API_URL, API_KEY
 
 # Enable caching for 10 minutes
 requests_cache.install_cache("coingecko_cache", expire_after=timedelta(minutes=0))
@@ -28,10 +28,13 @@ class CoinGeckoApi:
             or an empty DataFrame if the request fails.
         """
         endpoint = f"{self.base_url}/coins/{coin_id}/market_chart"
+        headers = {
+            "x-cg-demo-api-key": API_KEY
+        }
         params = {"vs_currency": vs_currency, "days": days, "interval": interval}
 
         try:
-            response = self.session.get(endpoint, params=params, timeout=30)
+            response = self.session.get(endpoint, params=params, headers=headers, timeout=30)
             response.raise_for_status()
             data = response.json()
 

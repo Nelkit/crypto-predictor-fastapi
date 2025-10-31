@@ -134,7 +134,7 @@ def predict_price(token: str):
 
     # validate fetched data
     if ohlc_data is None or ohlc_data.empty:
-        raise HTTPException(status_code=503, detail="Failed to fetch OHLC data from API. Please try again later.")
+        raise HTTPException(status_code=503, detail="Failed to fetch OHLC data from API. Try again in 1 or 2 minutes.")
 
     numerical_features = ["open", 'high', "low", "close", "volume", "market_cap"]
     missing_cols = [col for col in numerical_features if col not in ohlc_data.columns]
