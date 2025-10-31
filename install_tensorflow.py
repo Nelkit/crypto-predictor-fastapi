@@ -10,5 +10,8 @@ if system == "Darwin":
 elif system == "Windows":
     print("Installing TensorFlow for Windows...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow"])
+elif system == "Linux":
+    print("Installing TensorFlow for Linux...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow"])
 else:
     print("Unsupported OS for TensorFlow. Please install manually.")
