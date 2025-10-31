@@ -17,12 +17,41 @@ seq_transformer = preprocessor["seq"]
 # load the trained LSTM model
 model = load_model(os.path.join(MODEL_DIR, "lstm_model.keras"))
 
-def predict_next_day_high(x: pd.DataFrame):
-    x_scaled = pd.DataFrame(scaler_X.transform(x), columns=x.columns)
+def predict_next_day_high(x: pd.DataFrame) -> float:
+    """Predict the next-day high from input features.
 
-    x_seq = seq_transformer.transform(x_scaled)
+    Args:
+        x (pd.DataFrame): Input features for the sequence (rows = timesteps, cols = features).
 
-    y_pred_scaled = model.predict(x_seq)
-    y_pred = scaler_y.inverse_transform(y_pred_scaled)
+    Returns:
+        float: Predicted next-day high.
 
-    return y_pred[-1][0]
+    Raises:
+        ValueError: If `x` is empty or None.
+        RuntimeError: If preprocessing or model prediction fails or returns unexpected shape.
+    """
+    if x is None or x.empty:
+        raise ValueError("Input DataFrame `x` must not be empty.")
+
+    try:
+        # Scale input features using the pre-fitted scaler
+        x_scaled = pd.DataFrame(scaler_X.transform(x), columns=x.columns)
+
+        # Transform scaled features into sequences for LSTM input
+        x_seq = seq_transformer.transform(x_scaled)
+
+        # Predict scaled output using the trained LSTM model
+        y_pred_scaled = model.predict(x_seq)
+
+        # Inverse transform predictions to original scale
+        y_pred = scaler_y.inverse_transform(y_pred_scaled)
+    except Exception as e:
+        raise RuntimeError(f"Prediction failed: {e}")
+
+    # Return the last prediction (next-day high)
+    if y_pred.ndim == 2 and y_pred.shape[1] >= 1:
+        return float(y_pred[-1, 0])
+    if y_pred.ndim == 1:
+        return float(y_pred[-1])
+
+    raise RuntimeError(f"Unexpected prediction output shape: {y_pred.shape}")
