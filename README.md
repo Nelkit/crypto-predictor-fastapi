@@ -9,6 +9,7 @@ FastAPI service for deploying cryptocurrency price prediction models. Includes e
 
 - [Installation](#installation)  
 - [Usage](#usage)  
+- [Testing](#testing)
 - [API Endpoints](#api-endpoints)  
 - [Development](#development)  
 - [License](#license)  
@@ -43,6 +44,31 @@ poetry env activate
 poetry install
 ```
 
+⚠️ **Mac M1/M2 vs Windows Users**  
+TensorFlow requires different versions depending on the operating system:
+
+- **Mac (Apple Silicon, M1/M2)**: It is recommended to install `tensorflow-macos` and `tensorflow-metal` to leverage the integrated GPU.
+- **Windows / Intel Macs**: It is recommended to install standard `tensorflow`.
+
+You can run the included script to automatically install the correct version:
+
+```bash
+poetry run python install_tensorflow.py
+```
+
+Or install manually depending on your system:
+
+**Mac:**
+```bash
+poetry add tensorflow-macos tensorflow-metal
+```
+
+**Windows:**
+```bash
+poetry add tensorflow
+```
+
+
 ## Usage
 
 Run the FastAPI server:
@@ -50,6 +76,15 @@ Run the FastAPI server:
 poetry run uvicorn app.main:app --reload
 ```
 Visit http://127.0.0.1:8000 to see the API documentation.
+
+## Testing
+
+Run the tests using pytest:
+```bash
+poetry run pytest tests/
+```
+
+The tests are mocked to avoid external dependencies and should run quickly.
 
 ## API Endpoints
 | Endpoint                      | Method | Description                                                               |
@@ -75,8 +110,6 @@ docker build -t crypto-forecast-api .
 ```bash
 docker run -d -p 80:80 crypto-forecast-api
 ```
-
-3. Access the application at http://localhost
 
 ## Docker Deployment
 

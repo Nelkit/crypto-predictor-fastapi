@@ -27,4 +27,7 @@ requests-cache = "^1.2.1"
 deep-learning-mac = ["tensorflow-macos", "tensorflow-metal"]
 deep-learning-windows = ["tensorflow"]
 
-
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+httpx = "^0.27.0"
+pytest-mock = "^3.12.0"
