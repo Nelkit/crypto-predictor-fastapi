@@ -79,27 +79,33 @@ curl -sSL https://install.python-poetry.org | python3 -
 poetry install
 ```
 
->⚠️ **Mac M1/M2 vs Windows Users**  
-TensorFlow requires different versions depending on the operating system:
->- **Mac (Apple Silicon, M1/M2)**: It is recommended to install `tensorflow-macos` and `tensorflow-metal` to leverage the integrated GPU.
-> - **Windows / Intel Macs**: It is recommended to install standard `tensorflow`.  
-> 
->You can run the included script to automatically install the correct version:
->```bash
->poetry run python install_tensorflow.py
->```
->Or install manually depending on your system:
->**Mac:**
->```bash
->poetry add tensorflow-macos tensorflow-metal
->```
->**Windows:**
->```bash
->poetry add tensorflow
->```
+5. Install TensorFlow (Required - API uses LSTM models)
 
-5. Activate the poetry environment
+>⚠️ **Important**: TensorFlow installation depends on your system architecture.
 
+The API requires TensorFlow for LSTM-based predictions. The installation varies depending on your operating system:
+
+- **Mac (Apple Silicon, M1/M2/M3)**: Install `tensorflow-macos` and `tensorflow-metal` to leverage the integrated GPU.
+- **Windows / Intel Macs**: Install standard `tensorflow`.
+
+**Automatic Installation** (Recommended):
+```bash
+poetry run python install_tensorflow.py
+```
+
+**Manual Installation**:
+
+**Mac (Apple Silicon):**
+```bash
+poetry add tensorflow-macos tensorflow-metal
+```
+
+**Windows/Intel Mac:**
+```bash
+poetry add tensorflow
+```
+
+6. Activate the Poetry environment (optional)
 ```bash
 poetry env activate
 ```
