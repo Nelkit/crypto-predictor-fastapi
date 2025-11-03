@@ -1,6 +1,9 @@
 # 36120-25SP-group6-25609227-AT3-fastapi
+> FastAPI service that predicts the next-day high price for Ethereum using an LSTM model.
+> 
+--------
 
-**Description:**  
+# 🧩 Project Overview
 FastAPI service for deploying cryptocurrency price prediction models. It includes endpoints for health checks, project information, and next-day high price predictions for a selected token.
 
 This API loads the trained LSTM model from the experimentation phase and exposes it through REST endpoints for integration with the Streamlit dashboard. It incorporates preprocessing, prediction, and error-handling logic to ensure reliable and consistent responses.
@@ -64,10 +67,10 @@ cd 36120-25SP-group6-25609227-AT3-fastapi
  pyenv local  3.11.4
 ```
 
-3. Activate the poetry environment
+3. Install Poetry (if not installed)
 
 ```bash
-poetry env activate
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 4. Install dependencies with Poetry:
@@ -95,6 +98,11 @@ TensorFlow requires different versions depending on the operating system:
 >poetry add tensorflow
 >```
 
+5. Activate the poetry environment
+
+```bash
+poetry env activate
+```
 ---
 
 ## Usage
