@@ -10,7 +10,7 @@ app = FastAPI(
     description="Predicts next-day HIGH price for Ethereum using an LSTM model.",
     version=API_VERSION,
     contact={
-        "name": "Group 6 - AMLA AT3",
+        "name": "Ethereum Price Prediction API github repository",
         "url": "https://github.com/Nelkit/36120-25SP-group6-25609227-AT3-fastapi",
         "email": "nelkit.chavezcalona@student.uts.edu.au",
     },
