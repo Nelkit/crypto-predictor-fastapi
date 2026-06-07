@@ -28,9 +28,7 @@ class CoinGeckoApi:
             or an empty DataFrame if the request fails.
         """
         endpoint = f"{self.base_url}/coins/{coin_id}/market_chart"
-        headers = {
-            "x-cg-demo-api-key": API_KEY
-        }
+        headers = {"x-cg-demo-api-key": API_KEY} if API_KEY else {}
         params = {"vs_currency": vs_currency, "days": days, "interval": interval}
 
         try:
